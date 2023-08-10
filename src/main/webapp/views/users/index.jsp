@@ -12,7 +12,7 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/users/_form.jsp"><button type="button" class="btn btn-primary">Add New Users</button></a>
+                <a href="/online-appointments/views/users/_form.jsp"><button type="button" class="btn btn-primary">Add New Users</button></a>
             </div>
         </div>
     </div>

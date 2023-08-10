@@ -8,11 +8,11 @@
 <div class="card mx-5 my-5">
     <div class="card-header border-0 pt-6 my-1">
         <div class="card-title">
-            <h5>All Users</h5>
+            <h5>Add New Users</h5>
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/users/index.jsp"><button type="button" class="btn btn-primary">Back</button></a>
+                <a href="/online-appointments/views/users/index.jsp"><button type="button" class="btn btn-primary">Back</button></a>
             </div>
         </div>
     </div>
