@@ -15,6 +15,9 @@
 		   <li class="nav-item">
 			<a class="nav-link text-light" href="/online-appointments/views/consultants/index.jsp">Consultants</a>
 		  </li>
+		  <li class="nav-item">
+			<a class="nav-link text-light" href="/online-appointments/views/consultant_availabilities/index.jsp">Availability</a>
+		  </li>
 	     </ul>
 	     <form>
 	       <input class="form-control" type="text" placeholder="Search" aria-label="Search" autocomplete="off">
