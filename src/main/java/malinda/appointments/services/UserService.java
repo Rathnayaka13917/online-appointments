@@ -14,22 +14,22 @@ public class UserService implements Service<User> {
 	}
 
 	@Override
-	public  boolean create(User obj) {
+	public  boolean create(User obj) throws ClassNotFoundException, SQLException {
 		return UserDAO.createUser(obj);
 	}
 
 	@Override
-	public boolean update(User obj) {
+	public boolean update(User obj) throws ClassNotFoundException, SQLException {
 		return UserDAO.updateUser(obj);
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public boolean delete(int id) throws ClassNotFoundException, SQLException {
 		return UserDAO.deleteUser(id);
 	}
 
 	@Override
-	public List<User> getAll() {
+	public List<User> getAll() throws ClassNotFoundException, SQLException {
 		return UserDAO.getAllUsers();
 	}
 
