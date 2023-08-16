@@ -1,8 +1,4 @@
 <html>
-<%@include file="/layout/head.jsp"%>
-<body>
-<%@include file="/layout/nav_bar.jsp"%>
-
-<%@include file="/layout/footer.jsp"%>
+<jsp:forward page="login"></jsp:forward>
 </body>
 </html>

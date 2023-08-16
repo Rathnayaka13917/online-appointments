@@ -12,7 +12,7 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/views/users/index.jsp"><button type="button" class="btn btn-primary">Back</button></a>
+                <a href="/online-appointments/users"><button type="button" class="btn btn-primary">Back</button></a>
             </div>
         </div>
     </div>

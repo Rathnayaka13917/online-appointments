@@ -10,16 +10,53 @@
   	<description></description>
   	<servlet-class>malinda.appointments.controllers.AppointmentContoller</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>UserController</servlet-name>
+  	<display-name>UserController</display-name>
+  	<description></description>
+  	<servlet-class>malinda.appointments.controllers.UserController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>HomeController</servlet-name>
+  	<display-name>HomeController</display-name>
+  	<description></description>
+  	<servlet-class>malinda.appointments.controllers.HomeController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
   	<url-pattern>/appointments</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
-  	<url-pattern>/appointments/new</url-pattern>
+  	<url-pattern>/appointments/delete</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
   	<url-pattern>/appointments/update</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/users</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/users/new</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/users/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/users/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>HomeController</servlet-name>
+  	<url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

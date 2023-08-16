@@ -10,7 +10,7 @@
 	         <a class="nav-link text-light" aria-current="page" href="#">Home</a>
 	       </li>
 	       <li class="nav-item">
-	         <a class="nav-link text-light" href="/online-appointments/views/users/index.jsp">Users</a>
+	         <a class="nav-link text-light" href="/online-appointments/users">Users</a>
 	       </li>
 		   <li class="nav-item">
 			<a class="nav-link text-light" href="/online-appointments/views/consultants/index.jsp">Consultants</a>

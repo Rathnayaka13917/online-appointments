@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <%@include file="/layout/head.jsp"%>
@@ -12,12 +13,12 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/views/users/_form.jsp"><button type="button" class="btn btn-primary">Add New Users</button></a>
+                <a href="/online-appointments/users/new"><button type="button" class="btn btn-primary">Add New Users</button></a>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <table class="table align-middle table-row-dashed fs-6 gy-5" data-order="[[1,'asc']]" data-page-length="25">
+        <table class="table align-middle table-row-dashed fs-6 gy-5" >
             <thead>
                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                      <th class="min-w-40px">ID</th>
@@ -28,7 +29,15 @@
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-
+			<tag:forEach var="user" items="${userList}">
+                <tr>
+                    <td>${user.getId()}</td>
+                    <td>${user.getName()}</td>
+                    <td>${user.getEmail()}</td>
+                    <td>${user.getIs_active()}</td>
+                    <td></td>
+                </tr>
+			</tag:forEach>
             </tbody>
         </table>
     </div>

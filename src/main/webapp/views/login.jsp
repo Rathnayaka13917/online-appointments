@@ -36,7 +36,7 @@
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-center">
                     <p class="lead fw-bold mb-60 me-3 fs-1">SIGN IN</p>
                 </div>
-              <form>    
+              <form action="login" method="post">    
                 <!-- Email input -->
                 <div class="form-floating mb-4">
                     <input type="email" class="form-control" id="email" placeholder="eg:jone">
@@ -49,7 +49,7 @@
                     <label for="floatingInput">Password</label>
                 </div>      
                 <div class="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" class="btn btn-primary btn-lg"
+                  <button type="submit" class="btn btn-primary btn-lg"
                     style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                 </div>
               </form>
