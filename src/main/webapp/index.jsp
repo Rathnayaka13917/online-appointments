@@ -1,5 +1,8 @@
 <html>
+<%@include file="/layout/head.jsp"%>
 <body>
-<h2>Hello World!</h2>
+<%@include file="/layout/nav_bar.jsp"%>
+
+<%@include file="/layout/footer.jsp"%>
 </body>
 </html>

@@ -22,9 +22,13 @@
 			<a class="nav-link text-light" href="/online-appointments/views/job_seekers/index.jsp">Job Seekers</a>
 		  </li>
 	     </ul>
-	     <form>
-	       <input class="form-control" type="text" placeholder="Search" aria-label="Search" autocomplete="off">
-	     </form>
+	     <div>
+			<ul class="navbar-nav me-auto">
+				<li class="nav-item">
+					<a class="nav-link text-light" href="/online-appointments/views/login.jsp">Log In</a>
+				</li>
+			</ul>
+		 </div>
 	   </div>
 	 </div>
 </nav>
