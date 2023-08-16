@@ -10,13 +10,6 @@ public class Appointment {
 	private String remarks;
 	
 	public Appointment() {
-		this.id=0;
-		this.consultant=0;
-		this.start_time="";
-		this.end_time="";
-		this.date="";
-		this.job_seeker=0;
-		this.remarks="";
 	}
 
 	public Appointment(int id, int consultant, String start_time, String end_time, String date, int job_seeker,String remarks) {
