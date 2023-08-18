@@ -1,10 +1,19 @@
+<%@page import="java.util.List,java.util.LinkedList"%>
+<%@page import="malinda.appointments.models.JobSeeker"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <%@include file="/layout/head.jsp"%>
 <body>
 <%@include file="/layout/nav_bar.jsp"%>
+<%
+	List<JobSeeker> seekersList=new LinkedList<>();
+if(request.getAttribute("seekerList")!=null){
+	seekersList =(List<JobSeeker>)request.getAttribute("seekerList");
+}
+%>
 <div class="card mx-5 my-5">
     <div class="card-header border-0 pt-6 my-1">
         <div class="card-title">
@@ -12,7 +21,7 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/views/job_seekers/_form.jsp"><button type="button" class="btn btn-primary">Add New Job Seeker</button></a>
+                <a href="/online-appointments/JobSeekers/new"><button type="button" class="btn btn-primary">Add New Job Seeker</button></a>
             </div>
         </div>
     </div>
@@ -29,7 +38,20 @@
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-
+				<%
+					for(JobSeeker seeker : seekersList){
+				%>
+				<tr>
+                    <td>${seeker.getId()}</td>
+                    <td>${seeker.getName()}</td>
+                    <td>${seeker.getEmail()}</td>
+                    <td>${seeker.getCountry()}</td>
+                    <td>${seeker.getTelephone()}</td>
+                    <td></td>
+                </tr>
+				<%
+					}
+				%>
             </tbody>
         </table>
     </div>

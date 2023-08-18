@@ -1,3 +1,5 @@
+<%@page import="malinda.appointments.models.User"%>
+<%@page import="java.util.List,java.util.LinkedList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
  <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,7 +8,15 @@
 <%@include file="/layout/head.jsp"%>
 <body>
 <%@include file="/layout/nav_bar.jsp"%>
+
+<%
+	List<User> userList=new LinkedList<>();
+if(request.getAttribute("userList")!=null){
+	userList=(List<User>)request.getAttribute("userList");
+}
+%>
 <div class="card mx-5 my-5">
+	<% String msg = "hello"; %>
     <div class="card-header border-0 pt-6 my-1">
         <div class="card-title">
             <h5>All Users</h5>
@@ -29,7 +39,9 @@
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-			<tag:forEach var="user" items="${userList}">
+			<%
+				for(User user : userList){
+			%>
                 <tr>
                     <td>${user.getId()}</td>
                     <td>${user.getName()}</td>
@@ -37,7 +49,9 @@
                     <td>${user.getIs_active()}</td>
                     <td></td>
                 </tr>
-			</tag:forEach>
+			<%
+				}
+			%>
             </tbody>
         </table>
     </div>

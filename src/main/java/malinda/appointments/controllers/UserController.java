@@ -28,7 +28,7 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getRequestURI().substring(request.getContextPath().length());
-		
+		System.out.println("action"+action);
 		if(action.equals("/login")) {
 			if(request.getSession().getAttribute("user")==null) {
 				getLogin(request, response);
@@ -39,6 +39,12 @@ public class UserController extends HttpServlet {
 			getAllUsers(request,response);
 		}else if(action.equals("/users/new")) {
 			getCreatePage(request, response);
+		}else if(action.equals("/users/view")) {
+			getUserById(request, response);
+		}else if(action.equals("/users/update")) {
+			updateUser(request,response);
+		}else if(action.equals("/users/delete")) {
+			deleteUser(request, response);
 		}else {
 			getHomePage(request, response);
 		}
@@ -71,17 +77,18 @@ public class UserController extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getRequestURI().substring(request.getContextPath().length());
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa"+action);
 		response.getOutputStream().println(action);
 		if(action.equals("/login")) {
 			loginUser(request,response);
 		}
-		else if(action.equals("update")) 
+		else if(action.equals("/users/new")) 
+		{
+			addUser(request, response);
+		}
+		else if(action.equals("/users/update")) 
 		{
 			updateUser(request,response);
-		}
-		else if(action.equals("delete")) 
-		{
-			deleteUser(request,response);
 		}
 	}
 //	Post Methods
@@ -114,14 +121,13 @@ public class UserController extends HttpServlet {
 		
 		request.setAttribute("message", msg);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/views/users/index.jsp");
-		rd.forward(request, response);
+		request.getRequestDispatcher("/views/users/index.jsp").forward(request, response);
 	}
 	
 	private void getUserById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "";
 		UserService service = new UserService();
-		int id = Integer.parseInt(request.getParameter("user"));
+		int id = Integer.parseInt(request.getParameter("id"));
 	   
 		User user= new User();
 		try {
@@ -147,7 +153,7 @@ public class UserController extends HttpServlet {
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
 		user.setType(request.getParameter("type"));
-		user.setIs_active(Integer.parseInt(request.getParameter("is_ative")));
+		user.setIs_active(Integer.parseInt(request.getParameter("status")));
 		
 		try {
 			boolean result = service.create(user);
@@ -160,15 +166,15 @@ public class UserController extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {
 			msg = e.getMessage();
 		}
-		   
+		
 		request.setAttribute("message", msg);	
-		RequestDispatcher rd = request.getRequestDispatcher("/views/users/_form.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("http://localhost:8080/online-appointments/users");
 	}
 	
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "";
 		UserService service = new UserService();
+		int id = Integer.parseInt(request.getParameter("id"));
 		User user = new User();
 		user.setName(request.getParameter("name"));
 		user.setEmail(request.getParameter("email"));
@@ -177,7 +183,7 @@ public class UserController extends HttpServlet {
 		user.setIs_active(Integer.parseInt(request.getParameter("is_ative")));
 		
 		try {
-			boolean result = service.update(user);
+			boolean result = service.update(user, id);
 			 if(result) {
 				msg = "This user has been updated successfully! User Name:" + user.getName();
 			 }
@@ -189,13 +195,12 @@ public class UserController extends HttpServlet {
 		}
 		   
 		request.setAttribute("message", msg);	
-		RequestDispatcher rd = request.getRequestDispatcher("/views/users/_form.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("http://localhost:8080/online-appointments/users");
 	}
 	
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String msg = "";
-		int id =Integer.parseInt(request.getParameter("user"));
+		int id =Integer.parseInt(request.getParameter("id"));
 		UserService service = new UserService();
 		try {
 			service.delete(id);
@@ -206,7 +211,7 @@ public class UserController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("deleteMessage", msg);
 	   
-	   response.sendRedirect("/views/users/index?action=all");
+	   response.sendRedirect("http://localhost:8080/online-appointments/users");
 	}
 
 }

@@ -5,6 +5,7 @@
 <%@include file="/layout/head.jsp"%>
 <body>
 <%@include file="/layout/nav_bar.jsp"%>
+<% String action = request.getRequestURI().substring(request.getContextPath().length()); %>
 <div class="card mx-5 my-5">
     <div class="card-header border-0 pt-6 my-1">
         <div class="card-title">
@@ -17,17 +18,17 @@
         </div>
     </div>
     <div class="card-body">
-        <form action="" method="post">
+        <form action="new" method="post">
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" placeholder="eg:jone">
+                        <input type="text" class="form-control required" id="name" name="name" placeholder="eg:jone" <%if(action!="/users/new"){ %> value="${user.getName()}" <%} %> required>
                         <label for="floatingInput">Name</label>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="jone@example.com">
+                        <input type="email" class="form-control required" id="email" name="email" placeholder="jone@example.com" value="${user.getEmail()}" required>
                         <label for="floatingInput">Email Address</label>
                     </div>
                 </div>
@@ -35,20 +36,20 @@
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="password" placeholder="password">
+                        <input type="password" class="form-control required" id="password" name="password" placeholder="password" value="${user.getPassword()}" required>
                         <label for="floatingInput">Password</label>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="con_password" placeholder="password">
+                        <input type="password" class="form-control required" id="con_password" name="con_password" placeholder="password" required>
                         <label for="floatingInput">Confirm Password</label>
                     </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-lg-6">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" id="type" name="type">
                         <option selected>User Type</option>
                         <option value="1">Admin</option>
                         <option value="2">Job seeker</option>
@@ -58,13 +59,13 @@
                 <div class="col-lg-6">
                     <label for="status" class="required">Status</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" value="1" name="status" id="active" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Active
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" value="0" name="status" id="inactive">
                         <label class="form-check-label" for="flexRadioDefault1">
                           InActive
                         </label>

@@ -19,8 +19,8 @@ public class UserService implements Service<User> {
 	}
 
 	@Override
-	public boolean update(User obj) throws ClassNotFoundException, SQLException {
-		return UserDAO.updateUser(obj);
+	public boolean update(User obj,int id) throws ClassNotFoundException, SQLException {
+		return UserDAO.updateUser(obj, id);
 	}
 
 	@Override

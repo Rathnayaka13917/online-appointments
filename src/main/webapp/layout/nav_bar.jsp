@@ -19,7 +19,7 @@
 			<a class="nav-link text-light" href="/online-appointments/views/consultant_availabilities/index.jsp">Availability</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link text-light" href="/online-appointments/views/job_seekers/index.jsp">Job Seekers</a>
+			<a class="nav-link text-light" href="/online-appointments/JobSeekers">Job Seekers</a>
 		  </li>
 	     </ul>
 	     <div>

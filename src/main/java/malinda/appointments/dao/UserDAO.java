@@ -27,7 +27,7 @@ public class UserDAO {
 		
 		ResultSet rs = ps.executeQuery();
 		User user = new User();
-		
+		System.out.println("List: "+code+" : "+rs.getFetchSize());
 		if (rs.next()) {
 			user.setId(rs.getInt("id"));
 			user.setName(rs.getString("name"));
@@ -48,10 +48,10 @@ public class UserDAO {
 		Connection con=connector.connectDb();
 		String query = "select * from users";
 		Statement st = con.createStatement();
-		
+	
 		ResultSet rs = st.executeQuery(query);
 		List<User> users = new ArrayList<User>();
-		
+		System.out.println("List: "+rs.getFetchSize());
 		while (rs.next()) {
 			User user = new User(
 				rs.getInt("id"), 
@@ -61,6 +61,7 @@ public class UserDAO {
 				rs.getString("type"),
 				rs.getInt("is_ative")
 			);
+			System.out.println("Name: "+user.getName());
 			users.add(user);
 		}
 		st.close();
@@ -87,7 +88,7 @@ public class UserDAO {
 		return result;
 	}
 	
-	public static boolean updateUser(User user) throws ClassNotFoundException, SQLException {
+	public static boolean updateUser(User user,int id) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		String query = "update users set name=?, email=?, password=?, type=?, is_active=? where id=?";
@@ -98,7 +99,7 @@ public class UserDAO {
 		ps.setString(3, user.getPassword());
 		ps.setString(4, user.getType());
 		ps.setInt(5, user.getIs_active());
-		ps.setInt(6, user.getId());
+		ps.setInt(6, id);
 
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
@@ -107,12 +108,12 @@ public class UserDAO {
 		return result;
 	}
 	
-	public static boolean deleteUser(int user) throws ClassNotFoundException, SQLException {
+	public static boolean deleteUser(int id) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		String query = "delete from users where id=?";
 		PreparedStatement ps = con.prepareStatement(query);
-		ps.setInt(1, user);
+		ps.setInt(1, id);
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();

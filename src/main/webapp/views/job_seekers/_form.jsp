@@ -12,22 +12,22 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/views/job_seekers/index.jsp"><button type="button" class="btn btn-primary">Back</button></a>
+                <a href="/online-appointments/JobSeekers"><button type="button" class="btn btn-primary">Back</button></a>
             </div>
         </div>
     </div>
     <div class="card-body">
-        <form action="" method="post">
+        <form action="new" method="post">
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="name" placeholder="eg:jone">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="eg:jone" required>
                         <label for="floatingInput">Name</label>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="jone@example.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="jone@example.com" required>
                         <label for="floatingInput">Email Address</label>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
             <div class="form-group row">
                 <div class="col-lg-12">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="address" placeholder="address">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="address" required>
                         <label for="floatingInput">Address</label>
                     </div>
                 </div>
@@ -43,13 +43,13 @@
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="country" placeholder="country">
+                        <input type="text" class="form-control" id="country" name="country" placeholder="country" required>
                         <label for="floatingInput">Country</label>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="telephone" placeholder="telephone">
+                        <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="telephone" required>
                         <label for="floatingInput">Telephone</label>
                     </div>
                 </div>
@@ -57,20 +57,20 @@
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="position" placeholder="position">
+                        <input type="text" class="form-control" id="position" name="position" placeholder="position">
                         <label for="floatingInput">Seeking Position</label>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <label for="status" class="required">Status</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                        <input class="form-check-input" type="radio" name="status" value="1" id="active" checked>
                         <label class="form-check-label" for="flexRadioDefault2">
                             Active
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <input class="form-check-input" type="radio" name="status" value="0" id="inactive">
                         <label class="form-check-label" for="flexRadioDefault1">
                           InActive
                         </label>
