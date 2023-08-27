@@ -32,8 +32,8 @@ if(request.getAttribute("userList")!=null){
             <thead>
                 <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                      <th class="min-w-40px">ID</th>
-                     <th class="min-w-125px">Name</th>
-                     <th class="min-w-125px">Email</th>
+                     <th class="min-w-175px">Name</th>
+                     <th class="min-w-175px">Email</th>
                      <th class="min-w-125px">Status</th>
                      <th class="min-w-60px">Action</th>
                 </tr>
@@ -43,11 +43,17 @@ if(request.getAttribute("userList")!=null){
 				for(User user : userList){
 			%>
                 <tr>
-                    <td>${user.getId()}</td>
-                    <td>${user.getName()}</td>
-                    <td>${user.getEmail()}</td>
-                    <td>${user.getIs_active()}</td>
-                    <td></td>
+                    <td><%= user.getId() %></td>
+                    <td><%= user.getName() %></td>
+                    <td><%= user.getEmail() %></td>
+                    <td><%= (user.getIs_active()==1)?"Active" : "Inactive" %></td>
+                    <td>
+	                    <div class="d-flex justify-content-center">
+	                    	<a href="/online-appointments/users/view?action=view &id=<%= user.getId() %>"><button type="button" class="btn btn-warning">VIEW</button></a>
+	                    	<a href="/online-appointments/users/update?id=<%= user.getId() %>"><button type="button" class="btn btn-success">UPDATE</button></a>
+	                    	<a href="/online-appointments/users/delete?id=<%= user.getId() %>"><button type="button" class="btn btn-danger">DELETE</button></a>
+	                    </div>
+                    </td>
                 </tr>
 			<%
 				}

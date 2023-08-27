@@ -10,6 +10,7 @@ public class Consultant {
 	private String expertise;
 	private String telephone;
 	private int is_active;
+	
 	public int getId() {
 		return id;
 	}

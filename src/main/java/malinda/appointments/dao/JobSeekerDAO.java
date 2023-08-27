@@ -72,6 +72,7 @@ public class JobSeekerDAO {
 	}
 	
 	public static boolean createJobSeeker(JobSeeker jobSeeker) throws ClassNotFoundException, SQLException {
+		int u_id=0;
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		String query1 = "insert into users (name,email,password,type,is_active) values(?,?,?,?,?)";
@@ -85,10 +86,15 @@ public class JobSeekerDAO {
 		boolean result1 = ps1.executeUpdate() > 0;
 		ps1.close();
 		
+//		String q2 = "select id from users where email=?";
+//		PreparedStatement pss = con.prepareStatement(query1);
+//		pss.setString(1, jobSeeker.getEmail());
+//		ResultSet res = pss.executeQuery();
+		
 		String query = "insert into job_seekers (user_id,name,address,email,country,seeking_position,telephone,is_active) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		
-		ps.setInt(1, jobSeeker.getUser_id());
+		ps.setInt(1, u_id);
 		ps.setString(2, jobSeeker.getName());
 		ps.setString(3, jobSeeker.getAddress());
 		ps.setString(4, jobSeeker.getEmail());

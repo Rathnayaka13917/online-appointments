@@ -42,7 +42,7 @@ public class UserController extends HttpServlet {
 		}else if(action.equals("/users/view")) {
 			getUserById(request, response);
 		}else if(action.equals("/users/update")) {
-			updateUser(request,response);
+			getUserById(request, response);
 		}else if(action.equals("/users/delete")) {
 			deleteUser(request, response);
 		}else {
@@ -77,6 +77,7 @@ public class UserController extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getRequestURI().substring(request.getContextPath().length());
+		
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa"+action);
 		response.getOutputStream().println(action);
 		if(action.equals("/login")) {
@@ -117,6 +118,7 @@ public class UserController extends HttpServlet {
 			
 		} catch (Exception e) {
 			msg = e.getMessage();
+			System.out.println(e.getMessage());
 		}
 		
 		request.setAttribute("message", msg);

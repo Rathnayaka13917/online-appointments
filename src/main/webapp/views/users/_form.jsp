@@ -5,11 +5,11 @@
 <%@include file="/layout/head.jsp"%>
 <body>
 <%@include file="/layout/nav_bar.jsp"%>
-<% String action = request.getRequestURI().substring(request.getContextPath().length()); %>
+<% String action = request.getParameter("action"); %>
 <div class="card mx-5 my-5">
     <div class="card-header border-0 pt-6 my-1">
         <div class="card-title">
-            <h5>Add New Users</h5>
+            <h5><%= action %>Add New Users</h5>
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">

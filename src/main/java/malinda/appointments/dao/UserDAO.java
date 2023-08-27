@@ -59,14 +59,14 @@ public class UserDAO {
 				rs.getString("email"),
 				rs.getString("password"),
 				rs.getString("type"),
-				rs.getInt("is_ative")
+				rs.getInt("is_active")
 			);
 			System.out.println("Name: "+user.getName());
 			users.add(user);
 		}
 		st.close();
 		con.close();
-		
+		System.out.println("List: "+users);
 		return users;
 	}
 	
