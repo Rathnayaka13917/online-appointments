@@ -71,42 +71,82 @@ public class ConsultantDAO {
 		return consultants;
 	}
 	
-//	public static boolean createConsultant(Consultant consultant) {
-//		int u_id=0;
-//		DbConnection connector=new DbConnection();
-//		Connection con=connector.connectDb();
-//		String query1 = "insert into users (name,email,password,type,is_active) values(?,?,?,?,?)";
-//		PreparedStatement ps1 = con.prepareStatement(query1);
+	public static boolean createConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
+		int u_id=0;
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		String query1 = "insert into users (name,email,password,type,is_active) values(?,?,?,?,?)";
+		PreparedStatement ps1 = con.prepareStatement(query1);
+		
+		ps1.setString(1, consultant.getName());
+		ps1.setString(2, consultant.getEmail());
+		ps1.setString(3, "0000");
+		ps1.setString(4, "2");
+		ps1.setInt(5, consultant.getIs_active());
+		boolean result1 = ps1.executeUpdate() > 0;
+		ps1.close();
+		
+//		String q2 = "select * from users where email=?";
+//		PreparedStatement pss = con.prepareStatement(query1);
+//		pss.setString(1, consultant.getEmail());
+//		ResultSet res = pss.executeQuery();
+//		pss.close();
 //		
-////		ps1.setString(2, jobSeeker.getEmail());
-////		ps1.setString(3, "0000");
-////		ps1.setString(4, "2");
-////		ps1.setInt(5, jobSeeker.getIs_active());
-////		boolean resups1.setString(1, jobSeeker.getName());
-////		lt1 = ps1.executeUpdate() > 0;
-////		ps1.close();
-//		
-////		String q2 = "select id from users where email=?";
-////		PreparedStatement pss = con.prepareStatement(query1);
-////		pss.setString(1, jobSeeker.getEmail());
-////		ResultSet res = pss.executeQuery();
-//		
-////		String query = "insert into job_seekers (user_id,name,address,email,country,seeking_position,telephone,is_active) values(?,?,?,?,?,?,?,?)";
-////		PreparedStatement ps = con.prepareStatement(query);
-//		
-////		ps.setInt(1, u_id);
-////		ps.setString(2, jobSeeker.getName());
-////		ps.setString(3, jobSeeker.getAddress());
-////		ps.setString(4, jobSeeker.getEmail());
-////		ps.setString(5, jobSeeker.getCountry());
-////		ps.setString(6, jobSeeker.getSeeking_position());
-////		ps.setString(7, jobSeeker.getTelephone());
-////		ps.setInt(8, jobSeeker.getIs_active());
-//		
-////		boolean result = ps.executeUpdate() > 0;
-////		ps.close();
-////		con.close();
-//		
-//		return result;
-//	}
+//		System.out.println("user id :"+res.getInt("id"));
+		
+		String query = "insert into consultants (user_id,name,address,email,country,expertise_area,telephone,is_active) values(?,?,?,?,?,?,?,?)";
+		PreparedStatement ps = con.prepareStatement(query);
+		
+		ps.setInt(1, 0);
+		ps.setString(2, consultant.getName());
+		ps.setString(3, consultant.getAddress());
+		ps.setString(4, consultant.getEmail());
+		ps.setString(5, consultant.getCountry());
+		ps.setString(6, consultant.getExpertise());
+		ps.setString(7, consultant.getTelephone());
+		ps.setInt(8, consultant.getIs_active());
+		
+		boolean result = ps.executeUpdate() > 0;
+		ps.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public static boolean updateConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		String query = "update consultants set user_id=?, name=?, address=?, email=?, country=?, expertise_area=?, telephone=?, is_active=? where id=?";
+		PreparedStatement ps = con.prepareStatement(query);
+		
+		ps.setInt(1, consultant.getUser_id());
+		ps.setString(2, consultant.getName());
+		ps.setString(3, consultant.getAddress());
+		ps.setString(4, consultant.getEmail());
+		ps.setString(5, consultant.getCountry());
+		ps.setString(6, consultant.getExpertise());
+		ps.setString(7, consultant.getTelephone());
+		ps.setInt(8, consultant.getIs_active());
+		ps.setInt(9, consultant.getId());
+		
+		boolean result = ps.executeUpdate() > 0;
+		ps.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public static boolean deleteConsultant(int id) throws ClassNotFoundException, SQLException {
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		String query = "delete from job_seekers where id=?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, id);
+		
+		boolean result = ps.executeUpdate() > 0;
+		ps.close();
+		con.close();
+		
+		return result;
+	}
 }

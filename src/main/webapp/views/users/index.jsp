@@ -50,7 +50,7 @@ if(request.getAttribute("userList")!=null){
                     <td>
 	                    <div class="d-flex justify-content-center">
 	                    	<a href="/online-appointments/users/view?action=view &id=<%= user.getId() %>"><button type="button" class="btn btn-warning">VIEW</button></a>
-	                    	<a href="/online-appointments/users/update?id=<%= user.getId() %>"><button type="button" class="btn btn-success">UPDATE</button></a>
+	                    	<a href="/online-appointments/users/update?action=update &id=<%= user.getId() %>"><button type="button" class="btn btn-success">UPDATE</button></a>
 	                    	<a href="/online-appointments/users/delete?id=<%= user.getId() %>"><button type="button" class="btn btn-danger">DELETE</button></a>
 	                    </div>
                     </td>

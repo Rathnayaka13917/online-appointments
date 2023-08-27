@@ -30,6 +30,12 @@ public class JobSeekerController extends HttpServlet {
 			getAllJobSeekers(request, response);
 		}else if(action.equals("/JobSeekers/new")) {
 			getCreatePage(request, response);
+		}else if(action.equals("/JobSeekers/view")) {
+			getJobSeekerById(request, response);
+		}else if(action.equals("/JobSeekers/update")) {
+			getJobSeekerById(request, response);
+		}else if(action.equals("/JobSeekers/delete")) {
+			deleteUser(request, response);
 		}
 	}
 
@@ -67,7 +73,7 @@ public class JobSeekerController extends HttpServlet {
 	private void getJobSeekerById(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "";
 		JobSeekerService service = new JobSeekerService();
-		int id = Integer.parseInt(request.getParameter("job_seeker"));
+		int id = Integer.parseInt(request.getParameter("id"));
 	   
 		JobSeeker seeker= new JobSeeker();
 		try {
@@ -83,6 +89,7 @@ public class JobSeekerController extends HttpServlet {
 	    request.setAttribute("seeker", seeker);
 		request.getRequestDispatcher("/views/job_seekers/_form.jsp").forward(request, response);
 	}
+	
 	public void getCreatePage(HttpServletRequest req,HttpServletResponse res) {
 		try {
 			req.getRequestDispatcher("/views/job_seekers/_form.jsp").forward(req, res);
@@ -115,6 +122,7 @@ public class JobSeekerController extends HttpServlet {
 			 }
 		} catch (ClassNotFoundException | SQLException e) {
 			msg = e.getMessage();
+			System.out.println("message : "+msg);
 		}
 		
 		request.setAttribute("message", msg);	
@@ -148,13 +156,13 @@ public class JobSeekerController extends HttpServlet {
 		}
 		   
 		request.setAttribute("message", msg);	
-		request.getRequestDispatcher("/views/job_seekers/_form.jsp").forward(request, response);
+		request.getRequestDispatcher("http://localhost:8080/online-appointments/JobSeekers").forward(request, response);
 	}
 	
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String msg = "";
 		JobSeekerService service = new JobSeekerService();
-		int id = Integer.parseInt(request.getParameter("job_seeker"));
+		int id = Integer.parseInt(request.getParameter("id"));
 		try {
 			service.delete(id);
 		} catch (ClassNotFoundException | SQLException e) {
@@ -164,7 +172,7 @@ public class JobSeekerController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("deleteMessage", msg);
 	   
-	   response.sendRedirect("/views/job_seekers/index?action=all");
+	   response.sendRedirect("http://localhost:8080/online-appointments/JobSeekers");
 	}
 
 }

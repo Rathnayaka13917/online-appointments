@@ -42,12 +42,18 @@ if(request.getAttribute("seekerList")!=null){
 					for(JobSeeker seeker : seekersList){
 				%>
 				<tr>
-                    <td>${seeker.getId()}</td>
-                    <td>${seeker.getName()}</td>
-                    <td>${seeker.getEmail()}</td>
-                    <td>${seeker.getCountry()}</td>
-                    <td>${seeker.getTelephone()}</td>
-                    <td></td>
+                    <td><%= seeker.getId() %></td>
+                    <td><%= seeker.getName() %></td>
+                    <td><%= seeker.getEmail() %></td>
+                    <td><%= seeker.getCountry() %></td>
+                    <td><%= seeker.getTelephone() %></td>
+                    <td>
+                    	<div class="d-flex justify-content-center">
+	                    	<a href="/online-appointments/JobSeekers/view?action=view &id=<%= seeker.getId() %>" class="btn btn-warning">VIEW</a>
+	                    	<a href="/online-appointments/JobSeekers/update?action=update &id=<%= seeker.getId() %>" class="btn btn-success">UPDATE</a>
+	                    	<a href="/online-appointments/JobSeekers/delete?id=<%= seeker.getId() %>" class="btn btn-danger">DELETE</a>
+	                    </div>
+                    </td>
                 </tr>
 				<%
 					}

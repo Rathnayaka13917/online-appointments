@@ -1,5 +1,6 @@
 package malinda.appointments.dao;
 
+import java.awt.image.RescaleOp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,15 +87,20 @@ public class JobSeekerDAO {
 		boolean result1 = ps1.executeUpdate() > 0;
 		ps1.close();
 		
-//		String q2 = "select id from users where email=?";
-//		PreparedStatement pss = con.prepareStatement(query1);
-//		pss.setString(1, jobSeeker.getEmail());
-//		ResultSet res = pss.executeQuery();
+		String query2="select id from users where email='"+jobSeeker.getEmail()+"'";
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery(query2);
+		while(rs.next()) {
+			u_id=rs.getInt("id");
+		}
+		
+		stmt.close();
 		
 		String query = "insert into job_seekers (user_id,name,address,email,country,seeking_position,telephone,is_active) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		
-		ps.setInt(1, u_id);
+		
+		ps.setInt(1,u_id);
 		ps.setString(2, jobSeeker.getName());
 		ps.setString(3, jobSeeker.getAddress());
 		ps.setString(4, jobSeeker.getEmail());
@@ -102,6 +108,8 @@ public class JobSeekerDAO {
 		ps.setString(6, jobSeeker.getSeeking_position());
 		ps.setString(7, jobSeeker.getTelephone());
 		ps.setInt(8, jobSeeker.getIs_active());
+		
+		rs.close();
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
