@@ -41,8 +41,8 @@ public class User {
 	public int getIs_active() {
 		return is_active;
 	}
-	public void setIs_active(int string) {
-		this.is_active = string;
+	public void setIs_active(int active) {
+		this.is_active = active;
 	}
 	public User() {
 		this.id = 0;

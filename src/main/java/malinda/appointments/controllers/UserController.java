@@ -182,7 +182,7 @@ public class UserController extends HttpServlet {
 		user.setEmail(request.getParameter("email"));
 		user.setPassword(request.getParameter("password"));
 		user.setType(request.getParameter("type"));
-		user.setIs_active(Integer.parseInt(request.getParameter("is_ative")));
+		user.setIs_active(Integer.parseInt(request.getParameter("status")));
 		
 		try {
 			boolean result = service.update(user, id);
