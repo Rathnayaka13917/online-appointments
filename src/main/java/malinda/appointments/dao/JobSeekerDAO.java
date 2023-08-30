@@ -76,30 +76,10 @@ public class JobSeekerDAO {
 		int u_id=0;
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
-		String query1 = "insert into users (name,email,password,type,is_active) values(?,?,?,?,?)";
-		PreparedStatement ps1 = con.prepareStatement(query1);
-		
-		ps1.setString(1, jobSeeker.getName());
-		ps1.setString(2, jobSeeker.getEmail());
-		ps1.setString(3, "0000");
-		ps1.setString(4, "2");
-		ps1.setInt(5, jobSeeker.getIs_active());
-		boolean result1 = ps1.executeUpdate() > 0;
-		ps1.close();
-		
-		String query2="select id from users where email='"+jobSeeker.getEmail()+"'";
-		Statement stmt=con.createStatement();
-		ResultSet rs=stmt.executeQuery(query2);
-		while(rs.next()) {
-			u_id=rs.getInt("id");
-		}
-		
-		stmt.close();
 		
 		String query = "insert into job_seekers (user_id,name,address,email,country,seeking_position,telephone,is_active) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
-		
-		
+				
 		ps.setInt(1,u_id);
 		ps.setString(2, jobSeeker.getName());
 		ps.setString(3, jobSeeker.getAddress());
@@ -109,7 +89,6 @@ public class JobSeekerDAO {
 		ps.setString(7, jobSeeker.getTelephone());
 		ps.setInt(8, jobSeeker.getIs_active());
 		
-		rs.close();
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
@@ -118,12 +97,11 @@ public class JobSeekerDAO {
 		return result;
 	}
 	
-	public static boolean updateJobSeeker(JobSeeker jobSeeker) throws ClassNotFoundException, SQLException {
+	public static boolean updateJobSeeker(JobSeeker jobSeeker, int id) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		String query = "update job_seekers set user_id=?, name=?, address=?, email=?, country=?, seeking_position=?, telephone=?, is_active=? where id=?";
 		PreparedStatement ps = con.prepareStatement(query);
-		
 		ps.setInt(1, jobSeeker.getUser_id());
 		ps.setString(2, jobSeeker.getName());
 		ps.setString(3, jobSeeker.getAddress());
@@ -132,12 +110,11 @@ public class JobSeekerDAO {
 		ps.setString(6, jobSeeker.getSeeking_position());
 		ps.setString(7, jobSeeker.getTelephone());
 		ps.setInt(8, jobSeeker.getIs_active());
-		ps.setInt(9, jobSeeker.getId());
-		
+		ps.setInt(9, id);
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
 		con.close();
-		
+		System.out.println("stage 5" +result);
 		return result;
 	}
 	

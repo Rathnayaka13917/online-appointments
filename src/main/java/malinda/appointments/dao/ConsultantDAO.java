@@ -72,27 +72,8 @@ public class ConsultantDAO {
 	}
 	
 	public static boolean createConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
-		int u_id=0;
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
-		String query1 = "insert into users (name,email,password,type,is_active) values(?,?,?,?,?)";
-		PreparedStatement ps1 = con.prepareStatement(query1);
-		
-		ps1.setString(1, consultant.getName());
-		ps1.setString(2, consultant.getEmail());
-		ps1.setString(3, "0000");
-		ps1.setString(4, "2");
-		ps1.setInt(5, consultant.getIs_active());
-		boolean result1 = ps1.executeUpdate() > 0;
-		ps1.close();
-		
-//		String q2 = "select * from users where email=?";
-//		PreparedStatement pss = con.prepareStatement(query1);
-//		pss.setString(1, consultant.getEmail());
-//		ResultSet res = pss.executeQuery();
-//		pss.close();
-//		
-//		System.out.println("user id :"+res.getInt("id"));
 		
 		String query = "insert into consultants (user_id,name,address,email,country,expertise_area,telephone,is_active) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
@@ -113,7 +94,7 @@ public class ConsultantDAO {
 		return result;
 	}
 	
-	public static boolean updateConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
+	public static boolean updateConsultant(Consultant consultant, int id) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		String query = "update consultants set user_id=?, name=?, address=?, email=?, country=?, expertise_area=?, telephone=?, is_active=? where id=?";
@@ -127,7 +108,7 @@ public class ConsultantDAO {
 		ps.setString(6, consultant.getExpertise());
 		ps.setString(7, consultant.getTelephone());
 		ps.setInt(8, consultant.getIs_active());
-		ps.setInt(9, consultant.getId());
+		ps.setInt(9, id);
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
@@ -139,7 +120,7 @@ public class ConsultantDAO {
 	public static boolean deleteConsultant(int id) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
-		String query = "delete from job_seekers where id=?";
+		String query = "delete from consultants where id=?";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setInt(1, id);
 		

@@ -47,6 +47,8 @@ public class JobSeekerController extends HttpServlet {
 		System.out.println("post "+action);
 		if(action.equals("/JobSeekers/new")) {
 			addJobSeeker(request, response);
+		}else if(action.equals("/JobSeekers/update")) {
+			updateJobSeeker(request, response);
 		}
 	}
 	
@@ -79,7 +81,7 @@ public class JobSeekerController extends HttpServlet {
 		try {
 		    seeker = service.findById(id);
 		    if(seeker.getName().isEmpty() ) {
-		    	msg = "There is no any job seeker under User Id:" +id;
+		    	msg = "There is no any job seeker under Seeker Id:" +id;
 		    }
 		} catch (ClassNotFoundException | SQLException e) {
 		   msg = e.getMessage();
@@ -154,9 +156,10 @@ public class JobSeekerController extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {
 			msg = e.getMessage();
 		}
+		System.out.println("msg : "+msg);
 		   
 		request.setAttribute("message", msg);	
-		request.getRequestDispatcher("http://localhost:8080/online-appointments/JobSeekers").forward(request, response);
+		response.sendRedirect("http://localhost:8080/online-appointments/JobSeekers");
 	}
 	
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {

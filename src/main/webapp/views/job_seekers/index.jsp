@@ -49,8 +49,8 @@ if(request.getAttribute("seekerList")!=null){
                     <td><%= seeker.getTelephone() %></td>
                     <td>
                     	<div class="d-flex justify-content-center">
-	                    	<a href="/online-appointments/JobSeekers/view?action=view &id=<%= seeker.getId() %>" class="btn btn-warning">VIEW</a>
-	                    	<a href="/online-appointments/JobSeekers/update?action=update &id=<%= seeker.getId() %>" class="btn btn-success">UPDATE</a>
+	                    	<a href="/online-appointments/JobSeekers/view?id=<%= seeker.getId() %>" class="btn btn-warning">VIEW</a>
+	                    	<a href="/online-appointments/JobSeekers/update?id=<%= seeker.getId() %>" class="btn btn-success">UPDATE</a>
 	                    	<a href="/online-appointments/JobSeekers/delete?id=<%= seeker.getId() %>" class="btn btn-danger">DELETE</a>
 	                    </div>
                     </td>

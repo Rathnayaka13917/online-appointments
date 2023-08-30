@@ -121,4 +121,21 @@ public class UserDAO {
 		
 		return result;
 	}
+	
+	public static int getUserId(String email) throws ClassNotFoundException, SQLException {
+		int u_id=0;
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		
+		String query2="select id from users where email='"+email+"'";
+		Statement stmt=con.createStatement();
+		ResultSet rs=stmt.executeQuery(query2);
+		while(rs.next()) {
+			u_id=rs.getInt("id");
+		}
+		
+		stmt.close();
+		rs.close();
+		return u_id;
+	}
 }
