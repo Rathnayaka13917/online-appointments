@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>malinda.appointments.controllers.JobSeekerController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ConsultantController</servlet-name>
+  	<display-name>ConsultantController</display-name>
+  	<description></description>
+  	<servlet-class>malinda.appointments.controllers.ConsultantController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
   	<url-pattern>/appointments</url-pattern>
@@ -70,23 +76,42 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>JobSeekerController</servlet-name>
-  	<url-pattern>/JobSeekers</url-pattern>
+  	<url-pattern>/job-seekers</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>JobSeekerController</servlet-name>
-  	<url-pattern>/JobSeekers/new</url-pattern>
+  	<url-pattern>/job-seekers/new</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>JobSeekerController</servlet-name>
-  	<url-pattern>/JobSeekers/view</url-pattern>
+  	<url-pattern>/job-seekers/view</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>JobSeekerController</servlet-name>
-  	<url-pattern>/JobSeekers/update</url-pattern>
+  	<url-pattern>/job-seekers/update</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>JobSeekerController</servlet-name>
-  	<url-pattern>/JobSeekers/delete</url-pattern>
+  	<url-pattern>/job-seekers/delete</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+  	<servlet-name>ConsultantController</servlet-name>
+  	<url-pattern>/consultants</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantController</servlet-name>
+  	<url-pattern>/consultants/new</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantController</servlet-name>
+  	<url-pattern>/consultants/view</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantController</servlet-name>
+  	<url-pattern>/consultants/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantController</servlet-name>
+  	<url-pattern>/consultants/delete</url-pattern>
+  </servlet-mapping>
 </web-app>

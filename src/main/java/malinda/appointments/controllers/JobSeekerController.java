@@ -26,15 +26,15 @@ public class JobSeekerController extends HttpServlet {
 		String action = request.getRequestURI().substring(request.getContextPath().length());
 		System.out.println("get"+action);
 		
-		if(action.equals("/JobSeekers")) {
+		if(action.equals("/job-seekers")) {
 			getAllJobSeekers(request, response);
-		}else if(action.equals("/JobSeekers/new")) {
+		}else if(action.equals("/job-seekers/new")) {
 			getCreatePage(request, response);
-		}else if(action.equals("/JobSeekers/view")) {
+		}else if(action.equals("/job-seekers/view")) {
 			getJobSeekerById(request, response);
-		}else if(action.equals("/JobSeekers/update")) {
+		}else if(action.equals("/job-seekers/update")) {
 			getJobSeekerById(request, response);
-		}else if(action.equals("/JobSeekers/delete")) {
+		}else if(action.equals("/job-seekers/delete")) {
 			deleteUser(request, response);
 		}
 	}
@@ -45,9 +45,10 @@ public class JobSeekerController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getRequestURI().substring(request.getContextPath().length());
 		System.out.println("post "+action);
-		if(action.equals("/JobSeekers/new")) {
+		
+		if(action.equals("/job-seekers/new")) {
 			addJobSeeker(request, response);
-		}else if(action.equals("/JobSeekers/update")) {
+		}else if(action.equals("/job-seekers/update")) {
 			updateJobSeeker(request, response);
 		}
 	}
@@ -128,7 +129,7 @@ public class JobSeekerController extends HttpServlet {
 		}
 		
 		request.setAttribute("message", msg);	
-		response.sendRedirect("http://localhost:8080/online-appointments/JobSeekers");
+		response.sendRedirect("http://localhost:8080/online-appointments/job-seekers");
 	}
 	
 	private void updateJobSeeker(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -159,7 +160,7 @@ public class JobSeekerController extends HttpServlet {
 		System.out.println("msg : "+msg);
 		   
 		request.setAttribute("message", msg);	
-		response.sendRedirect("http://localhost:8080/online-appointments/JobSeekers");
+		response.sendRedirect("http://localhost:8080/online-appointments/job-seekers");
 	}
 	
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -175,7 +176,7 @@ public class JobSeekerController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("deleteMessage", msg);
 	   
-	   response.sendRedirect("http://localhost:8080/online-appointments/JobSeekers");
+	   response.sendRedirect("http://localhost:8080/online-appointments/job-seekers");
 	}
 
 }

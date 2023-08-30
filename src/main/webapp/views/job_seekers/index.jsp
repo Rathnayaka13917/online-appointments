@@ -21,7 +21,7 @@ if(request.getAttribute("seekerList")!=null){
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/JobSeekers/new"><button type="button" class="btn btn-primary">Add New Job Seeker</button></a>
+                <a href="/online-appointments/job-seekers/new"><button type="button" class="btn btn-primary">Add New Job Seeker</button></a>
             </div>
         </div>
     </div>
@@ -49,9 +49,9 @@ if(request.getAttribute("seekerList")!=null){
                     <td><%= seeker.getTelephone() %></td>
                     <td>
                     	<div class="d-flex justify-content-center">
-	                    	<a href="/online-appointments/JobSeekers/view?id=<%= seeker.getId() %>" class="btn btn-warning">VIEW</a>
-	                    	<a href="/online-appointments/JobSeekers/update?id=<%= seeker.getId() %>" class="btn btn-success">UPDATE</a>
-	                    	<a href="/online-appointments/JobSeekers/delete?id=<%= seeker.getId() %>" class="btn btn-danger">DELETE</a>
+	                    	<a href="/online-appointments/job-seekers/view?id=<%= seeker.getId() %>" class="btn btn-warning">VIEW</a>
+	                    	<a href="/online-appointments/job-seekers/update?id=<%= seeker.getId() %>" class="btn btn-success">UPDATE</a>
+	                    	<a href="/online-appointments/job-seekers/delete?id=<%= seeker.getId() %>" class="btn btn-danger">DELETE</a>
 	                    </div>
                     </td>
                 </tr>

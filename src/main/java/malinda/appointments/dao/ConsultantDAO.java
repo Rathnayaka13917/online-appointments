@@ -30,7 +30,7 @@ public class ConsultantDAO {
 			consultant.setAddress(rs.getString("address"));
 			consultant.setEmail(rs.getString("email"));
 			consultant.setCountry(rs.getString("country"));
-			consultant.setExpertise(rs.getString("expertise"));
+			consultant.setExpertise(rs.getString("expertise_area"));
 			consultant.setTelephone(rs.getString("telephone"));
 			consultant.setIs_active(rs.getInt("is_active"));
 		}
@@ -41,7 +41,7 @@ public class ConsultantDAO {
 		return consultant;
 	}
 	
-	public static List<Consultant> getAllConsultants(int id) throws ClassNotFoundException, SQLException{
+	public static List<Consultant> getAllConsultants() throws ClassNotFoundException, SQLException{
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		String query = "select * from consultants";
@@ -58,7 +58,7 @@ public class ConsultantDAO {
 			consultant.setAddress(rs.getString("address"));
 			consultant.setEmail(rs.getString("email"));
 			consultant.setCountry(rs.getString("country"));
-			consultant.setExpertise(rs.getString("expertise"));
+			consultant.setExpertise(rs.getString("expertise_area"));
 			consultant.setTelephone(rs.getString("telephone"));
 			consultant.setIs_active(rs.getInt("is_active"));
 			
@@ -78,7 +78,7 @@ public class ConsultantDAO {
 		String query = "insert into consultants (user_id,name,address,email,country,expertise_area,telephone,is_active) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		
-		ps.setInt(1, 0);
+		ps.setInt(1, consultant.getUser_id());
 		ps.setString(2, consultant.getName());
 		ps.setString(3, consultant.getAddress());
 		ps.setString(4, consultant.getEmail());

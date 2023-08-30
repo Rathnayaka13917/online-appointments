@@ -80,7 +80,7 @@ public class JobSeekerDAO {
 		String query = "insert into job_seekers (user_id,name,address,email,country,seeking_position,telephone,is_active) values(?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
 				
-		ps.setInt(1,u_id);
+		ps.setInt(1,jobSeeker.getUser_id());
 		ps.setString(2, jobSeeker.getName());
 		ps.setString(3, jobSeeker.getAddress());
 		ps.setString(4, jobSeeker.getEmail());

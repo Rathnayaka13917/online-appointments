@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.List,java.util.LinkedList"%>
+<%@page import="malinda.appointments.models.Consultant"%>
 <!DOCTYPE html>
 <html>
 <%@include file="/layout/head.jsp"%>
 <body>
 <%@include file="/layout/nav_bar.jsp"%>
+<%
+	List<Consultant> consultantsList = new LinkedList<>();
+	if(request.getAttribute("consultantList")!=null){
+		consultantsList =(List<Consultant>)request.getAttribute("consultantList");
+	}
+%>
 <div class="card mx-5 my-5">
     <div class="card-header border-0 pt-6 my-1">
         <div class="card-title">
@@ -12,7 +20,7 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/views/consultants/_form.jsp"><button type="button" class="btn btn-primary">Add New Consultant</button></a>
+                <a href="/online-appointments/consultants/new"><button type="button" class="btn btn-primary">Add New Consultant</button></a>
             </div>
         </div>
     </div>
@@ -29,7 +37,24 @@
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-
+            <%
+				for(Consultant consultant : consultantsList){
+			%>
+				<tr>
+					<td><%= consultant.getId() %></td>
+					<td><%= consultant.getName() %></td>
+					<td><%= consultant.getEmail() %></td>
+					<td><%= consultant.getCountry() %></td>
+					<td><%= (consultant.getIs_active()==1)?"Active" : "Inactive" %></td>
+					<td>
+						<div class="d-flex justify-content-center">
+	                    	<a href="/online-appointments/consultants/view?id=<%= consultant.getId() %>" class="btn btn-warning">VIEW</a>
+	                    	<a href="/online-appointments/consultants/update?id=<%= consultant.getId() %>" class="btn btn-success">UPDATE</a>
+	                    	<a href="/online-appointments/consultants/delete?id=<%= consultant.getId() %>" class="btn btn-danger">DELETE</a>
+	                    </div>
+					</td>
+				</tr>
+			<%} %>
             </tbody>
         </table>
     </div>
