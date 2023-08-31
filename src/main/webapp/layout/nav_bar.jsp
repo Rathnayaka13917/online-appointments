@@ -1,3 +1,4 @@
+<%@page import="malinda.appointments.services.JobSeekerService"%>
 <%@page import="malinda.appointments.services.ConsultantService"%>
 <%@ page import="malinda.appointments.models.User" %>
 <nav class="navbar navbar-expand " style="background-color: indigo" aria-label="Second navbar example">
@@ -34,7 +35,18 @@
 			   <li class="nav-item">
 				<a class="nav-link text-light" href="/online-appointments/consultants/update?user_id=<%= user.getId() %>">Consultants</a>
 			  </li>
-		  <% } 
+		  <% } else if(user.getType().equals("2")){ %>
+				  <li class="nav-item">
+					<a class="nav-link text-light" href="/online-appointments/job-seekers/update?id=<%= new JobSeekerService().findByUserId(user.getId()).getId() %>">Job Seekers</a>
+				  </li>
+		<% } else if(user.getType().equals("4")){ %>
+				<li class="nav-item">
+				<a class="nav-link text-light" href="/online-appointments/consultants">Consultants</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link text-light" href="/online-appointments/job-seekers">Job Seekers</a>
+			  </li>
+		  	<% 	}
 	    	} %>
 		  
 		  <li class="nav-item">

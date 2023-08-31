@@ -46,7 +46,7 @@
             <div class="form-group row">
                 <div class="col-lg-12">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="address" name="address" placeholder="address" <%if(request.getAttribute("consultant")!=null){ %> value="<%= consultant.getAddress() %>" <%} %> >
+                        <input type="text" class="form-control" id="address" name="address" placeholder="address" <%if(request.getAttribute("consultant")!=null){ %> value="<%= consultant.getAddress() %>" <%} %> required>
                         <label for="floatingInput">Address</label>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="telephone" <%if(request.getAttribute("consultant")!=null){ %> value="<%= consultant.getTelephone() %>" <%} %>>
+                        <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="telephone" <%if(request.getAttribute("consultant")!=null){ %> value="<%= consultant.getTelephone() %>" <%} %> required>
                         <label for="floatingInput">Telephone</label>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
             <div class="form-group row">
                 <div class="col-lg-12">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="axp-area" name="axp-area" placeholder="axp-area" <%if(request.getAttribute("consultant")!=null){ %> value="<%= consultant.getExpertise() %>" <%} %>>
+                        <input type="text" class="form-control" id="axp-area" name="axp-area" placeholder="axp-area" <%if(request.getAttribute("consultant")!=null){ %> value="<%= consultant.getExpertise() %>" <%} %> required>
                         <label for="floatingInput">Expertise Area</label>
                     </div>
                 </div>

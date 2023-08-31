@@ -50,21 +50,16 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control required" id="con_password" name="con_password" placeholder="password" <%if(request.getAttribute("user")!=null){ %> value="<%= user.getPassword() %>" <%} %> required>
-                        <label for="floatingInput">Confirm Password</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-lg-6">
-                    <select class="form-select" aria-label="Default select example" id="type" name="type">
+                    <select class="form-select" aria-label="Default select example" id="type" name="type" required>
                         <option>User Type</option>
                         <option <%= (user.getType().equals("1"))?"selected":"" %> value="1">Admin</option>
                         <option <%= (user.getType().equals("2"))?"selected":"" %> value="2">Job seeker</option>
                         <option <%= (user.getType().equals("3"))?"selected":"" %> value="3">Consultant</option>
+                        <option <%= (user.getType().equals("4"))?"selected":"" %> value="4">Reception</option>
                     </select>
                 </div>
+            </div>
+            <div class="form-group row">
                 <div class="col-lg-6">
                     <label for="status" class="required">Status</label>
                     <div class="form-check">
