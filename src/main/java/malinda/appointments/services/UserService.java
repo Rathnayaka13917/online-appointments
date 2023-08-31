@@ -32,5 +32,8 @@ public class UserService implements Service<User> {
 	public List<User> getAll() throws ClassNotFoundException, SQLException {
 		return UserDAO.getAllUsers();
 	}
+	public User userLogin(String email,String password) throws ClassNotFoundException, SQLException {
+		return UserDAO.Login(email,password);
+	}
 
 }

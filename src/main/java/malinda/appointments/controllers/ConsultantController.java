@@ -116,9 +116,9 @@ public class ConsultantController extends HttpServlet {
 		String msg = "";
 		ConsultantService service = new ConsultantService();
 		Consultant consultant = new Consultant();
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = (request.getParameter("id")!=null)?Integer.parseInt(request.getParameter("id")):Integer.parseInt(request.getParameter("user_id"));
 		try {
-			consultant = service.findById(id);
+			consultant = (request.getParameter("id")!=null)?service.findById(id):service.findByUserId(id);
 		    if(consultant.getName().isEmpty() ) {
 		    	msg = "There is no any consultant under consultant Id:" +id;
 		    }

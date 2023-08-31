@@ -6,16 +6,18 @@ public class ConsultantAvailability {
 	private String start_time;
 	private String end_time;
 	private int consultant;
+	private int reserved;
 	
 	public ConsultantAvailability() {
 	}
 
-	public ConsultantAvailability(int id, String day, String start_time, String end_time, int consultant) {
+	public ConsultantAvailability(int id, String day, String start_time, String end_time, int consultant,int reserved) {
 		this.id = id;
 		this.day = day;
 		this.start_time = start_time;
 		this.end_time = end_time;
 		this.consultant = consultant;
+		this.reserved=reserved;
 	}
 
 	public int getId() {
@@ -56,5 +58,13 @@ public class ConsultantAvailability {
 
 	public void setConsultant(int consultant) {
 		this.consultant = consultant;
+	}
+
+	public int getReserved() {
+		return reserved;
+	}
+
+	public void setReserved(int reserved) {
+		this.reserved = reserved;
 	}
 }

@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control required" id="con_password" name="con_password" placeholder="password" required>
+                        <input type="password" class="form-control required" id="con_password" name="con_password" placeholder="password" <%if(request.getAttribute("user")!=null){ %> value="<%= user.getPassword() %>" <%} %> required>
                         <label for="floatingInput">Confirm Password</label>
                     </div>
                 </div>

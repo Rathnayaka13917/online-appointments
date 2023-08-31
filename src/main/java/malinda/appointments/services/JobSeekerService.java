@@ -14,6 +14,10 @@ public class JobSeekerService implements Service<JobSeeker> {
 	public JobSeeker findById(int id) throws ClassNotFoundException, SQLException {
 		return JobSeekerDAO.getJobSeekerById(id);
 	}
+	
+	public JobSeeker findByUserId(int id) throws ClassNotFoundException, SQLException {
+		return JobSeekerDAO.findByUser(id);
+	}
 
 	@Override
 	public boolean create(JobSeeker obj) throws ClassNotFoundException, SQLException {

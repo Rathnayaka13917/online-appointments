@@ -25,9 +25,10 @@
     	}else{
     		consultant = (Consultant)request.getAttribute("consultant");
     	}
+    	String id=(request.getParameter("id")!=null)?request.getParameter("id"):String.valueOf(consultant.getId());
     %>
     <div class="card-body">
-        <form action="<%= (action[action.length-1].equals("new"))?"new" : "update?id="+Integer.parseInt(request.getParameter("id"))+"" %>" method="post">
+        <form action="<%= (action[action.length-1].equals("new"))?"new" : "update?id="+id+"" %>" method="post">
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">

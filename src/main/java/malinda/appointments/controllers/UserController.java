@@ -45,6 +45,9 @@ public class UserController extends HttpServlet {
 			getUserById(request, response);
 		}else if(action.equals("/users/delete")) {
 			deleteUser(request, response);
+		}else if(action.equals("/logout")){
+			request.getSession().invalidate();
+			getLogin(request, response);
 		}else {
 			getHomePage(request, response);
 		}
@@ -96,8 +99,16 @@ public class UserController extends HttpServlet {
 	public void loginUser(HttpServletRequest req,HttpServletResponse res) {
 		
 		try {
-			//req.getSession(true).setAttribute("user",new User());
-			getHomePage(req, res);
+			String email=req.getParameter("email");
+			String password=req.getParameter("password");
+			User user=new UserService().userLogin(email, password);
+			if(user!=null) {
+				req.getSession(true).setAttribute("user",user);
+				getHomePage(req, res);
+			}else {
+				res.sendRedirect("http://localhost:8080/online-appointments/login");
+			}
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

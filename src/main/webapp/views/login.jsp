@@ -39,13 +39,13 @@
               <form action="login" method="post">    
                 <!-- Email input -->
                 <div class="form-floating mb-4">
-                    <input type="email" class="form-control" id="email" placeholder="eg:jone">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="eg:jone" required>
                     <label for="floatingInput">Email Address</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-floating mb-3 ">
-                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                     <label for="floatingInput">Password</label>
                 </div>      
                 <div class="text-center text-lg-start mt-4 pt-2">
@@ -59,7 +59,7 @@
         <div
           class="d-flex flex-column flex-md-row text-center justify-content-between py-4 px-4 px-xl-5" style="background-color: indigo;">
           <div class="text-white mb-3 mb-md-0">
-            Copyright online-appointments Â© 2023. All rights reserved.
+            Copyright online-appointments © 2023. All rights reserved.
           </div>
         </div>
       </section>

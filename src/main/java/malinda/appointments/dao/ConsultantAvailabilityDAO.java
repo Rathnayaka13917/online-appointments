@@ -27,6 +27,7 @@ public class ConsultantAvailabilityDAO {
 			availability.setStart_time(rs.getString("start_time"));
 			availability.setEnd_time(rs.getString("end_time"));
 			availability.setConsultant(rs.getInt("consultant"));
+			availability.setReserved(rs.getInt("reserved"));
 		}
 		
 		ps.close();
@@ -53,6 +54,7 @@ public class ConsultantAvailabilityDAO {
 			availability.setStart_time(rs.getString("start_time"));
 			availability.setEnd_time(rs.getString("end_time"));
 			availability.setConsultant(rs.getInt("consultant"));
+			availability.setReserved(rs.getInt("reserved"));
 			
 			availabilities.add(availability);
 		}
@@ -85,13 +87,14 @@ public class ConsultantAvailabilityDAO {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		
-		String query = "update consultant_availabilities set day=?, start_time=?, end_time=?, consultant=? where id=?";
+		String query = "update consultant_availabilities set day=?, start_time=?, end_time=?, consultant=?,reserved=? where id=?";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setString(1, availability.getDay());
 		ps.setString(2, availability.getStart_time());
 		ps.setString(3, availability.getEnd_time());
 		ps.setInt(4, availability.getConsultant());
-		ps.setInt(5, id);
+		ps.setInt(5, availability.getReserved());
+		ps.setInt(6, id);
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();

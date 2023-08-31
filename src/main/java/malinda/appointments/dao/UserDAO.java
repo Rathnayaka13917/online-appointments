@@ -11,11 +11,25 @@ import java.util.List;
 import malinda.appointments.models.User;
 
 public class UserDAO {
-	public boolean Login(User obj) throws ClassNotFoundException, SQLException {
+	public static User Login(String email,String password) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
-		String query="select * from users where email="+obj.getEmail();
-		return true;
+		String query="select * from users where email=? and password=?";
+		PreparedStatement stmt=con.prepareStatement(query);
+		stmt.setString(1, email);
+		stmt.setString(2, password);
+		ResultSet rs=stmt.executeQuery();
+		if(rs.next()) {
+			User user=new User();
+			user.setId(rs.getInt("id"));
+			user.setName(rs.getString("name"));
+			user.setEmail(rs.getString("email"));
+			user.setPassword(rs.getString("password"));
+			user.setType(rs.getString("type"));
+			user.setIs_active(rs.getInt("is_active"));
+			return user;
+		}
+		return null;
 	}
 	
 	public static User getUserByUserCode(int code) throws ClassNotFoundException, SQLException {

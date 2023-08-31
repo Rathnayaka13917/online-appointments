@@ -63,7 +63,7 @@ public class ConsultantAvailabilityController extends HttpServlet {
 		ConsultantService consultantService = new ConsultantService();
 		Consultant consultant = new Consultant();
 		try {
-			consultant = consultantService.findById(id);
+			consultant = consultantService.findByUserId(id);
 			List<ConsultantAvailability> availabilities = service.getconsultantAllAvailabality(id);
 			
 			if (availabilities.isEmpty()) {
@@ -154,7 +154,7 @@ public class ConsultantAvailabilityController extends HttpServlet {
 		ConsultantAvailabilitiService service = new ConsultantAvailabilitiService();
 		ConsultantAvailability availability = new ConsultantAvailability();
 		availability.setDay(request.getParameter("day"));;
-		availability.setStart_time(request.getParameter("start_time"));;
+		availability.setStart_time(request.getParameter("start_time"));
 		availability.setEnd_time(request.getParameter("end_time"));
 		availability.setConsultant(Integer.parseInt(request.getParameter("consultant")));
 		

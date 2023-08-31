@@ -130,4 +130,32 @@ public class ConsultantDAO {
 		
 		return result;
 	}
+	public static Consultant getConsultantByUserId(int user_id) throws ClassNotFoundException, SQLException {
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		
+		String query = "select * from consultants where user_id =?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, user_id);
+		
+		ResultSet rs = ps.executeQuery();
+		Consultant consultant = new Consultant();
+		
+		if (rs.next()) {
+			consultant.setId(rs.getInt("id"));
+			consultant.setUser_id(rs.getInt("user_id"));
+			consultant.setName(rs.getString("name"));
+			consultant.setAddress(rs.getString("address"));
+			consultant.setEmail(rs.getString("email"));
+			consultant.setCountry(rs.getString("country"));
+			consultant.setExpertise(rs.getString("expertise_area"));
+			consultant.setTelephone(rs.getString("telephone"));
+			consultant.setIs_active(rs.getInt("is_active"));
+		}
+		
+		ps.close();
+		con.close();
+		
+		return consultant;
+	}
 }

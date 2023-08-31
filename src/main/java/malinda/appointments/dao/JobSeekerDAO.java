@@ -131,4 +131,31 @@ public class JobSeekerDAO {
 		
 		return result;
 	}
+	public static JobSeeker findByUser(int id) throws ClassNotFoundException, SQLException {
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		String query = "select * from job_seekers where user_id =?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, id);
+		
+		ResultSet rs = ps.executeQuery();
+		JobSeeker seeker = new JobSeeker();
+		
+		if (rs.next()) {
+			seeker.setId(rs.getInt("id"));
+			seeker.setUser_id(rs.getInt("user_id"));
+			seeker.setName(rs.getString("name"));
+			seeker.setAddress(rs.getString("address"));
+			seeker.setEmail(rs.getString("email"));
+			seeker.setCountry(rs.getString("country"));
+			seeker.setSeeking_position(rs.getString("seeking_position"));
+			seeker.setTelephone(rs.getString("telephone"));
+			seeker.setIs_active(rs.getInt("is_active"));
+		}
+		
+		ps.close();
+		con.close();
+		
+		return seeker;
+	}
 }

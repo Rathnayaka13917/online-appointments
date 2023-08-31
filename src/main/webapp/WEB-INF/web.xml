@@ -50,6 +50,10 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
+  	<url-pattern>/appointments/new</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AppointmentContoller</servlet-name>
   	<url-pattern>/appointments/update</url-pattern>
   </servlet-mapping>
   <servlet-mapping>

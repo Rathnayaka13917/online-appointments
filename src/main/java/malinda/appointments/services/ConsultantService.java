@@ -14,6 +14,10 @@ public class ConsultantService implements Service<Consultant> {
 	public Consultant findById(int id) throws ClassNotFoundException, SQLException {
 		return ConsultantDAO.getConsultantByID(id);
 	}
+	
+	public Consultant findByUserId(int id) throws ClassNotFoundException, SQLException {
+		return ConsultantDAO.getConsultantByUserId(id);
+	}
 
 	@Override
 	public boolean create(Consultant obj) throws ClassNotFoundException, SQLException {
