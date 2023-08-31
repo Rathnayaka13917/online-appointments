@@ -71,6 +71,8 @@ public class AppointmentContoller extends HttpServlet {
 			request.setAttribute("consultant", consultant);
 			JobSeeker seeker=new JobSeekerService().findById(obj.getId());
 			request.setAttribute("seeker", seeker);
+			List<ConsultantAvailability> availability_list=new ConsultantAvailabilitiService().getconsultantAllAvailabality(consultant.getId());
+			request.setAttribute("time_slots", availability_list);
 			request.getRequestDispatcher("/views/appointment/_form2.jsp").forward(request, response);
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -121,6 +123,7 @@ public class AppointmentContoller extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			String msg="";
 		String action = request.getRequestURI().substring(request.getContextPath().length());
 		if(action.equals("/appointments/new")) {
 			String step=request.getParameter("step");
@@ -137,11 +140,29 @@ public class AppointmentContoller extends HttpServlet {
 				request.setAttribute("time_slots", availability_list);
 				request.getRequestDispatcher("/views/appointment/_form2.jsp").forward(request, response);
 			}else if(step.equals("2")) {
-				
+				int availability_id=Integer.parseInt(request.getParameter("availability"));
+				String remarks=request.getParameter("remarks");
+				Appointment obj=new Appointment();
+				obj.setConsultant(consultant_id);
+				obj.setJob_seeker(seeker_id);
+				obj.setAvailability(availability_id);
+				obj.setRemarks(remarks);
+				AppointmentService service=new AppointmentService();
+				boolean result = service.create(obj);
+				 if(result) {
+					ConsultantAvailability availability=new ConsultantAvailabilitiService().findById(availability_id);
+					availability.setReserved(1);
+					new ConsultantAvailabilitiService().update(availability, availability_id);
+					msg = "This  Appointment has been added successfully!";
+				 }
+				 else {
+					 msg = "Failed to add the consultant!";
+				 }
+				 response.sendRedirect("http://localhost:8080/online-appointments/appointments");
 			}
 		}
 		}catch(Exception ex) {
-			
+			ex.printStackTrace();
 		}
 	}
 	

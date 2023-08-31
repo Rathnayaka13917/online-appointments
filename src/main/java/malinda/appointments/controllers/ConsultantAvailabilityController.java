@@ -63,7 +63,7 @@ public class ConsultantAvailabilityController extends HttpServlet {
 		ConsultantService consultantService = new ConsultantService();
 		Consultant consultant = new Consultant();
 		try {
-			consultant = consultantService.findByUserId(id);
+			consultant = consultantService.findById(id);
 			List<ConsultantAvailability> availabilities = service.getconsultantAllAvailabality(id);
 			
 			if (availabilities.isEmpty()) {

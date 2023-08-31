@@ -1,3 +1,12 @@
+<%@page import="malinda.appointments.services.ConsultantAvailabilitiService"%>
+<%@page import="malinda.appointments.models.ConsultantAvailability"%>
+<%@page import="malinda.appointments.services.AppointmentService"%>
+<%@page import="malinda.appointments.services.ConsultantService"%>
+<%@page import="malinda.appointments.models.Consultant"%>
+<%@page import="malinda.appointments.services.JobSeekerService"%>
+<%@page import="malinda.appointments.models.JobSeeker"%>
+<%@page import="malinda.appointments.models.Appointment"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -17,6 +26,9 @@
             </div>
         </div>
     </div>
+    <%
+    	List<Appointment> appointment_list=(List<Appointment>)request.getAttribute("appointmentlist");
+    %>
     <div class="card-body">
         <table class="table align-middle table-row-dashed fs-6 gy-5" >
             <thead>
@@ -24,13 +36,33 @@
                      <th class="min-w-40px">ID</th>
                      <th class="min-w-175px">Consultant</th>
                      <th class="min-w-175px">Job Seeker</th>
+                     <th class="min-w-125px">Date</th>
                      <th class="min-w-125px">Start Time</th>
                      <th class="min-w-125px">End Time</th>
                      <th class="min-w-60px">Action</th>
                 </tr>
             </thead>
             <tbody class="text-gray-600">
-			
+            <% for(Appointment obj:appointment_list){ 
+            	JobSeeker seeker=new JobSeekerService().findById(obj.getJob_seeker());
+            	Consultant consultant=new ConsultantService().findById(obj.getConsultant());
+            	ConsultantAvailability availability=new ConsultantAvailabilitiService().findById(obj.getAvailability());
+            %>
+				<tr>
+					<td><%=obj.getId() %></td>
+					<td><%= consultant.getName() %></td>
+					<td><%= seeker.getName() %></td>
+					<td><%= availability.getDay() %></td>
+					<td><%= availability.getStart_time() %></td>
+					<td><%= availability.getEnd_time() %></td>
+					<td>
+						<div class="d-flex justify-content-center">
+	                    	<a href="/online-appointments/appointments/view?id=<%= obj.getId() %>" class="btn btn-warning">VIEW</a>
+	                    	<a href="/online-appointments/appointments/delete?id=<%= obj.getId() %>" class="btn btn-danger">DELETE</a>
+	                    </div>
+					</td>
+				</tr>
+				<% } %>
             </tbody>
         </table>
     </div>

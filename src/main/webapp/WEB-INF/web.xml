@@ -54,11 +54,15 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
-  	<url-pattern>/appointments/update</url-pattern>
+  	<url-pattern>/appointments/view</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>UserController</servlet-name>
   	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UserController</servlet-name>
+  	<url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>UserController</servlet-name>

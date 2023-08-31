@@ -22,11 +22,9 @@ public class AppointmentDAO {
 			Appointment appointment = new Appointment();
 			appointment.setId(rs.getInt("id"));
 			appointment.setConsultant(rs.getInt("consultant"));
-			appointment.setDate(rs.getString("date"));
-			appointment.setStart_time(rs.getString("start_time"));
-			appointment.setEnd_time(rs.getString("end_time"));
 			appointment.setJob_seeker(rs.getInt("job_seeker"));
 			appointment.setRemarks(rs.getString("remarks"));
+			appointment.setAvailability(rs.getInt("availability"));
 			
 			appointments.add(appointment);
 		}
@@ -47,11 +45,9 @@ public class AppointmentDAO {
 			Appointment appointment = new Appointment();
 			appointment.setId(rs.getInt("id"));
 			appointment.setConsultant(rs.getInt("consultant"));
-			appointment.setDate(rs.getString("date"));
-			appointment.setStart_time(rs.getString("start_time"));
-			appointment.setEnd_time(rs.getString("end_time"));
 			appointment.setJob_seeker(rs.getInt("job_seeker"));
 			appointment.setRemarks(rs.getString("remarks"));
+			appointment.setAvailability(rs.getInt("availability"));
 			
 			appointments.add(appointment);
 		}
@@ -72,11 +68,9 @@ public class AppointmentDAO {
 			Appointment appointment = new Appointment();
 			appointment.setId(rs.getInt("id"));
 			appointment.setConsultant(rs.getInt("consultant"));
-			appointment.setDate(rs.getString("date"));
-			appointment.setStart_time(rs.getString("start_time"));
-			appointment.setEnd_time(rs.getString("end_time"));
 			appointment.setJob_seeker(rs.getInt("job_seeker"));
 			appointment.setRemarks(rs.getString("remarks"));
+			appointment.setAvailability(rs.getInt("availability"));
 			
 			appointments.add(appointment);
 		}
@@ -89,14 +83,12 @@ public class AppointmentDAO {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		
-		String query = "insert into appointments(consultant,date,start_time,end_time,job_seeker,remarks) values(?,?,?,?,?,?)";
+		String query = "insert into appointments(consultant,job_seeker,remarks,availability) values(?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setInt(1, obj.getConsultant());
-		ps.setString(2, obj.getDate());
-		ps.setString(3, obj.getStart_time());
-		ps.setString(4, obj.getEnd_time());
-		ps.setInt(5, obj.getJob_seeker());
-		ps.setString(6, obj.getRemarks());
+		ps.setInt(2, obj.getJob_seeker());
+		ps.setString(3, obj.getRemarks());
+		ps.setInt(4, obj.getAvailability());
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
@@ -108,15 +100,13 @@ public class AppointmentDAO {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
 		
-		String query = "update appointments set consultant=?, date=?,start_time=?,end_time=?,job_seeker=?,remarks=? where id=?";
+		String query = "update appointments set consultant=?,job_seeker=?,remarks=?,availability=? where id=?";
 		PreparedStatement ps = con.prepareStatement(query);
 		ps.setInt(1, obj.getConsultant());
-		ps.setString(2, obj.getDate());
-		ps.setString(3, obj.getStart_time());
-		ps.setString(4, obj.getEnd_time());
-		ps.setInt(5, obj.getJob_seeker());
-		ps.setString(6, obj.getRemarks());
-		ps.setInt(7, obj.getId());
+		ps.setInt(2, obj.getJob_seeker());
+		ps.setString(3, obj.getRemarks());
+		ps.setInt(4, obj.getAvailability());
+		ps.setInt(5, obj.getId());
 		
 		boolean result = ps.executeUpdate() > 0;
 		ps.close();
@@ -150,11 +140,9 @@ public class AppointmentDAO {
 		if(rs.next()) {
 			obj.setId(rs.getInt("id"));
 			obj.setConsultant(rs.getInt("consultant"));
-			obj.setDate(rs.getString("date"));
-			obj.setStart_time(rs.getString("start_time"));
-			obj.setEnd_time(rs.getString("end_time"));
 			obj.setJob_seeker(rs.getInt("job_seeker"));
 			obj.setRemarks(rs.getString("remarks"));
+			obj.setAvailability(rs.getInt("availability"));
 		}
 		return obj;
 	}

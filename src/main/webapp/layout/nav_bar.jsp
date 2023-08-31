@@ -1,3 +1,4 @@
+<%@page import="malinda.appointments.services.ConsultantService"%>
 <%@ page import="malinda.appointments.models.User" %>
 <nav class="navbar navbar-expand " style="background-color: indigo" aria-label="Second navbar example">
 	 <div class="container-fluid">
@@ -28,7 +29,7 @@
 	    	   }else if(user.getType().equals("3")){
 		    %>
 			  <li class="nav-item">
-				<a class="nav-link text-light" href="/online-appointments/consultant-availabilities?id=<%= user.getId() %>">Availability</a>
+				<a class="nav-link text-light" href="/online-appointments/consultant-availabilities?id=<%= new ConsultantService().findByUserId(user.getId()).getId() %>">Availability</a>
 			  </li>
 			   <li class="nav-item">
 				<a class="nav-link text-light" href="/online-appointments/consultants/update?user_id=<%= user.getId() %>">Consultants</a>
