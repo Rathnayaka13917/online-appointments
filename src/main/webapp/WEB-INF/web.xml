@@ -34,6 +34,12 @@
   	<description></description>
   	<servlet-class>malinda.appointments.controllers.ConsultantController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ConsultantAvailabilityController</servlet-name>
+  	<display-name>ConsultantAvailabilityController</display-name>
+  	<description></description>
+  	<servlet-class>malinda.appointments.controllers.ConsultantAvailabilityController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AppointmentContoller</servlet-name>
   	<url-pattern>/appointments</url-pattern>
@@ -113,5 +119,25 @@
   <servlet-mapping>
   	<servlet-name>ConsultantController</servlet-name>
   	<url-pattern>/consultants/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantAvailabilityController</servlet-name>
+  	<url-pattern>/consultant-availabilities</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantAvailabilityController</servlet-name>
+  	<url-pattern>/consultant-availabilities/new</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantAvailabilityController</servlet-name>
+  	<url-pattern>/consultant-availabilities/view</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantAvailabilityController</servlet-name>
+  	<url-pattern>/consultant-availabilities/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ConsultantAvailabilityController</servlet-name>
+  	<url-pattern>/consultant-availabilities/delete</url-pattern>
   </servlet-mapping>
 </web-app>

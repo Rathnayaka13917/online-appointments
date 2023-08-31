@@ -14,7 +14,7 @@
         </div>
         <div class="card-toolbar">
             <div class="d-flex justify-content-end">
-                <a href="/online-appointments/JobSeekers"><button type="button" class="btn btn-primary">Back</button></a>
+                <a href="/online-appointments/job-seekers"><button type="button" class="btn btn-primary">Back</button></a>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
             <div class="form-group row">
                 <div class="col-lg-6">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="position" name="position" placeholder="position" <%if(request.getAttribute("seeker")!=null){ %> value="<%= jobSeeker.getSeeking_position() %>" <%} %>>
+                        <input type="text" class="form-control" id="position" name="position" placeholder="position" <%if(request.getAttribute("seeker")!=null){ %> value="<%= jobSeeker.getSeeking_position() %>" <%} %> required>
                         <label for="floatingInput">Seeking Position</label>
                     </div>
                 </div>

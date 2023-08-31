@@ -51,6 +51,7 @@
 	                    	<a href="/online-appointments/consultants/view?id=<%= consultant.getId() %>" class="btn btn-warning">VIEW</a>
 	                    	<a href="/online-appointments/consultants/update?id=<%= consultant.getId() %>" class="btn btn-success">UPDATE</a>
 	                    	<a href="/online-appointments/consultants/delete?id=<%= consultant.getId() %>" class="btn btn-danger">DELETE</a>
+	                    	<a href="/online-appointments/consultant-availabilities?id=<%= consultant.getId() %>" class="btn btn-primary">AVAILABILITY</a>
 	                    </div>
 					</td>
 				</tr>

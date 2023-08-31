@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import malinda.appointments.models.Consultant;
-import malinda.appointments.models.JobSeeker;
 import malinda.appointments.services.ConsultantService;
-import malinda.appointments.services.JobSeekerService;
 
 /**
  * Servlet implementation class ConsultantController

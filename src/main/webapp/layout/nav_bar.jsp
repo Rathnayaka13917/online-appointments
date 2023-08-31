@@ -16,9 +16,6 @@
 			<a class="nav-link text-light" href="/online-appointments/consultants">Consultants</a>
 		  </li>
 		  <li class="nav-item">
-			<a class="nav-link text-light" href="/online-appointments/views/consultant_availabilities/index.jsp">Availability</a>
-		  </li>
-		  <li class="nav-item">
 			<a class="nav-link text-light" href="/online-appointments/job-seekers">Job Seekers</a>
 		  </li>
 	     </ul>
