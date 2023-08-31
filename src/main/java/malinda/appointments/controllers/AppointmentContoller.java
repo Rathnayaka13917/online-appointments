@@ -1,18 +1,22 @@
 package malinda.appointments.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import malinda.appointments.models.Appointment;
 import malinda.appointments.models.Consultant;
+import malinda.appointments.models.ConsultantAvailability;
 import malinda.appointments.models.JobSeeker;
 import malinda.appointments.models.User;
 import malinda.appointments.services.AppointmentService;
+import malinda.appointments.services.ConsultantAvailabilitiService;
 import malinda.appointments.services.ConsultantService;
 import malinda.appointments.services.JobSeekerService;
 
@@ -40,8 +44,20 @@ public class AppointmentContoller extends HttpServlet {
 		}
 	}
 
-	private void deleteAppointment(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void deleteAppointment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String msg = "";
+		AppointmentService service = new AppointmentService();
+		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			service.delete(id);
+		} catch (ClassNotFoundException | SQLException e) {
+			msg = e.getMessage();
+		}
+	   
+		HttpSession session = request.getSession();
+		session.setAttribute("deleteMessage", msg);
+	   
+	   response.sendRedirect("http://localhost:8080/online-appointments/appointments");
 		
 	}
 
@@ -57,7 +73,7 @@ public class AppointmentContoller extends HttpServlet {
 			request.setAttribute("seeker", seeker);
 			request.getRequestDispatcher("/views/appointment/_form2.jsp").forward(request, response);
 		}catch(Exception ex) {
-			
+			ex.printStackTrace();
 		}
 		
 	}
@@ -102,12 +118,31 @@ public class AppointmentContoller extends HttpServlet {
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+		String action = request.getRequestURI().substring(request.getContextPath().length());
+		if(action.equals("/appointments/new")) {
+			String step=request.getParameter("step");
+			int seeker_id=Integer.parseInt(request.getParameter("seeker"));
+			int consultant_id=Integer.parseInt(request.getParameter("consultant"));
+			request.setAttribute("consultants", new ConsultantService().getAll());
+			request.setAttribute("job_seekers", new JobSeekerService().getAll());
+			if(step.equals("1")) {
+				JobSeeker seeker=new JobSeekerService().findById(seeker_id);
+				Consultant consultant=new ConsultantService().findById(consultant_id);
+				request.setAttribute("consultant", consultant);
+				request.setAttribute("seeker", seeker);
+				List<ConsultantAvailability> availability_list=new ConsultantAvailabilitiService().getconsultantAvailableSlots(consultant_id);
+				request.setAttribute("time_slots", availability_list);
+				request.getRequestDispatcher("/views/appointment/_form2.jsp").forward(request, response);
+			}else if(step.equals("2")) {
+				
+			}
+		}
+		}catch(Exception ex) {
+			
+		}
 	}
 	
 

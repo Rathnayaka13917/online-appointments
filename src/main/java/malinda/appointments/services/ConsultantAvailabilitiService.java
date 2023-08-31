@@ -31,6 +31,9 @@ public class ConsultantAvailabilitiService implements Service<ConsultantAvailabi
 	public List<ConsultantAvailability> getconsultantAllAvailabality(int consultant) throws ClassNotFoundException, SQLException {
 		return ConsultantAvailabilityDAO.getConsultantAllAvalability(consultant);
 	}
+	public List<ConsultantAvailability> getconsultantAvailableSlots(int consultant) throws ClassNotFoundException, SQLException {
+		return ConsultantAvailabilityDAO.getConsultantAvailableSlots(consultant);
+	}
 
 	@Override
 	public List<ConsultantAvailability> getAll() throws ClassNotFoundException, SQLException {

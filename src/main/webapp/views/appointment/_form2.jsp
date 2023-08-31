@@ -1,3 +1,4 @@
+<%@page import="malinda.appointments.models.ConsultantAvailability"%>
 <%@page import="malinda.appointments.models.JobSeeker"%>
 <%@page import="malinda.appointments.models.Consultant"%>
 <%@page import="java.util.List"%>
@@ -23,6 +24,9 @@
     <%
     	List<Consultant> consultant_list=(List<Consultant>)request.getAttribute("consultants");
     	List<JobSeeker> jobseeker_list=(List<JobSeeker>)request.getAttribute("job_seekers");
+    	JobSeeker seeker=(JobSeeker)request.getAttribute("seeker");
+    	Consultant consultant=(Consultant)request.getAttribute("consultant");
+    	List<ConsultantAvailability> availability_list=(List<ConsultantAvailability>)request.getAttribute("time_slots");
     %>
     <div class="card-body">
         <form action="<%= (action[action.length-1].equals("new"))?"new?step=2" : "update?id="+Integer.parseInt(request.getParameter("id"))+"" %>" method="post">
@@ -32,7 +36,7 @@
 	                    <select class="form-select" aria-label="Default select example" id="seeker" name="seeker" readonly>
 	                        <option value="">Select Job Seeker</option>
 	                        <% for(JobSeeker obj:jobseeker_list){ %>
-	                        	<option value="<%= obj.getId() %>"><%= obj.getName() %>(<%=obj.getCountry()+" "+obj.getSeeking_position() %>)</option>
+	                        	<option <%=(seeker.getId()==obj.getId())?"selected":"" %>  value="<%= obj.getId() %>"><%= obj.getName() %>(<%=obj.getCountry()+" "+obj.getSeeking_position() %>)</option>
 	                        <% } %>
 	                    </select>
 	                </div>
@@ -41,7 +45,7 @@
                     <select class="form-select" aria-label="Default select example" id="consultant" name="consultant" readonly>
                         <option value="">Select Consultant</option>
                         <% for(Consultant obj:consultant_list){ %>
-                        	<option value="<%= obj.getId() %>"><%= obj.getName() %>(<%=obj.getCountry()+" "+obj.getExpertise() %>)</option>
+                        	<option <%=(consultant.getId()==obj.getId())?"selected":"" %> value="<%= obj.getId() %>"><%= obj.getName() %>(<%=obj.getCountry()+" "+obj.getExpertise() %>)</option>
                         <% } %>
                     </select>
                 </div>
@@ -52,8 +56,8 @@
                     <label for="consultant">Date & Time:</label>
                     <select class="form-select" aria-label="Default select example" id="consultant" name="consultant" >
                         <option value="">Select Date and Time Slots</option>
-                        <% for(Consultant obj:consultant_list){ %>
-                        	<option value="<%= obj.getId() %>"><%= obj.getName() %>(<%=obj.getCountry()+" "+obj.getExpertise() %>)</option>
+                        <% for(ConsultantAvailability obj:availability_list){ %>
+                        	<option value="<%= obj.getId() %>"><%= obj.getDay() %>(<%=obj.getStart_time()+" - "+obj.getEnd_time() %>)</option>
                         <% } %>
                     </select>
                 </div>

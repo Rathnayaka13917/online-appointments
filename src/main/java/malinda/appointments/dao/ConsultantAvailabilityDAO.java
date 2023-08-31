@@ -65,6 +65,35 @@ public class ConsultantAvailabilityDAO {
 		return availabilities;
 	}
 	
+	public static List<ConsultantAvailability> getConsultantAvailableSlots(int consultant) throws ClassNotFoundException, SQLException{
+		DbConnection connector=new DbConnection();
+		Connection con=connector.connectDb();
+		
+		String query = "select * from consultant_availabilities where consultant =? and reserved=0";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, consultant);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		List<ConsultantAvailability> availabilities = new ArrayList<ConsultantAvailability>();
+		while (rs.next()) {
+			ConsultantAvailability availability = new ConsultantAvailability();
+			availability.setId(rs.getInt("id"));
+			availability.setDay(rs.getString("day"));
+			availability.setStart_time(rs.getString("start_time"));
+			availability.setEnd_time(rs.getString("end_time"));
+			availability.setConsultant(rs.getInt("consultant"));
+			availability.setReserved(rs.getInt("reserved"));
+			
+			availabilities.add(availability);
+		}
+		
+		ps.close();
+		con.close();
+		
+		return availabilities;
+	}
+	
 	public static boolean createConsultantAvailability(ConsultantAvailability availability) throws ClassNotFoundException, SQLException {
 		DbConnection connector=new DbConnection();
 		Connection con=connector.connectDb();
